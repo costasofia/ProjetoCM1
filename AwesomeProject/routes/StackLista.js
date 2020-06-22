@@ -4,7 +4,10 @@ import { NavigationContainer, StackActions } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { LocalizationContext } from '../services/localization/LocalizationContext';
 import Listagem from './../pages/Listagem';
-
+import Inserir from './../pages/Inserir';
+import Atualizar from './../pages/Atualizar';
+import Detalhes from './../pages/Detalhes';
+import Eliminar from './../pages/Eliminar';
 const Stack = createStackNavigator();
 
 function StackLista({ navigation }) {
