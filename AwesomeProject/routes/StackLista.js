@@ -70,6 +70,20 @@ function StackLista({ navigation }) {
           },
         })}
       />
+            <Stack.Screen name="Atualizar" component={Atualizar}
+        options={({ navigation }) => ({
+          title: translations.AtualizarN,
+          headerStyle: {
+            backgroundColor: '#ffbf00',
+          },
+          headerTintColor: '#fff',
+          headerTitleAlign: 'center',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+
+        })}
+      />
        </Stack.Navigator>
 
 );
