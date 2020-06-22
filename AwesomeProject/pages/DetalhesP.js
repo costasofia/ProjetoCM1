@@ -44,7 +44,7 @@ function DetalhesP({ route, navigation }) {
         },
         {
           text: translations.Sim,
-          onPress: () => { deletePontos( navigation.navigate('Mapa', {IdPonto: IdPonto, IdUtilizador:IdUtilizador})) }
+          onPress: () => { deletePontos( navigation.navigate('Maps', {IdPonto: IdPonto, IdUtilizador:IdUtilizador})) }
         },
       ]
     );

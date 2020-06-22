@@ -21,7 +21,7 @@ function AtualizarP({ route, navigation }) {
     }).then(response => {
       console.log(response.data);
       //  navigation.dispach(StackActions.replace('Mapa', {IdPonto: IdPonto, IdUtilizador:IdUtilizador, Tema:Tema, Descricao:Descricao}))
-      navigation.navigate('Mapa', { IdPonto: IdPonto, IdUtilizador: IdUtilizador, Tema: Tema })
+      navigation.navigate('Maps', { IdPonto: IdPonto, IdUtilizador: IdUtilizador, Tema: Tema })
     }).catch(error => {
       console.log(error);
     }, []);

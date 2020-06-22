@@ -26,8 +26,6 @@ function ListagemP({ route, navigation }) {
 
     useEffect(() => {
         getPontos();
-
-
     }, []);
 
     function actionOnRow(item, navigation) {
