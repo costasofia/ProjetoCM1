@@ -132,7 +132,7 @@ function Maps({ route, navigation }) {
             </TouchableOpacity>
 
             <TouchableOpacity
-                onPress={() => navigation.dispatch(StackActions.replace('ListagemP',{parametro}))}
+                onPress={() => navigation.navigate('ListagemP',{parametro})}
                 style={styles.btnListaDireita}>
                 <Image
                     source={require('./../imagens/registo.png')}

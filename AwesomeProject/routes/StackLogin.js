@@ -7,6 +7,8 @@ import Login from './../pages/Login';
 import StackLista from './StackLista';
 import Maps from '../pages/Maps';
 import ListagemP from './../pages/ListagemP';
+import InserirP from './../pages/InserirP';
+import DetalhesP from './../pages/DetalhesP';
 const Stack = createStackNavigator();
 function StackLogin({ navigation }) {
     return (
@@ -18,8 +20,12 @@ function StackLogin({ navigation }) {
                     options={{ title: 'App', headerShown: false, }} />
                 <Stack.Screen name="Maps" component={Maps}
                     options={{ headerShown: false, }} />
-                     <Stack.Screen name="ListagemP" component={ListagemP}
+                <Stack.Screen name="ListagemP" component={ListagemP}
                     options={{ title: 'Lista de Pontos' }} />
+                <Stack.Screen name="InserirP" component={InserirP}
+                    options={{ title: 'Inserir Ponto' }} />
+                <Stack.Screen name="DetalhesP" component={DetalhesP}
+                    options={{ title: 'Detalhes' }} />
             </Stack.Navigator>
         </NavigationContainer>
     )
