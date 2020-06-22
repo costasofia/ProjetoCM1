@@ -57,6 +57,19 @@ function StackLista({ navigation }) {
 
         })}
       />
+          <Stack.Screen name="Inserir" component={Inserir}
+        options={({ navigation }) => ({
+          title: translations.InserirNota,
+          headerStyle: {
+            backgroundColor: '#ffbf00',
+          },
+          headerTintColor: '#fff',
+          headerTitleAlign: 'center',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        })}
+      />
        </Stack.Navigator>
 
 );
