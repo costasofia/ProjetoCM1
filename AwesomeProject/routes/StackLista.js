@@ -43,6 +43,20 @@ function StackLista({ navigation }) {
           ),
         })}
       />
+       <Stack.Screen name="Detalhes" component={Detalhes}
+        options={({ navigation }) => ({
+          title: translations.DetalhesN,
+          headerStyle: {
+            backgroundColor: '#ffbf00',
+          },
+          headerTintColor: '#fff',
+          headerTitleAlign: 'center',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+
+        })}
+      />
        </Stack.Navigator>
 
 );
