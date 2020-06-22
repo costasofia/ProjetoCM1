@@ -71,7 +71,7 @@ function Login({ navigation }) {
                             translations.Login,
                             translations.Loginok,
                             [
-                                { text: translations.Continuar, onPress: () => { navigation.navigate('Mapa', {parametro: decoded.IdUtilizador}) } },
+                                { text: translations.Continuar, onPress: () => { navigation.navigate('Maps', {parametro: decoded.IdUtilizador}) } },
                             ]
 
                         )

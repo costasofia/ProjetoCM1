@@ -2,14 +2,14 @@ import React, { useEffect, useState, componentDidMount, useNativeDriver } from '
 import { View, Map, Text, Button, StyleSheet, Image, Alert, TouchableOpacity, actionButtuon, } from 'react-native';
 import { StackAActions, StackActions } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import ActionButton from 'react-native-action-button';
+
 import MapView, { PROVIDER_GOOGLE, Marker, Callout, Circle } from 'react-native-maps';
 import Geolocation from '@react-native-community/geolocation';
 import axios from "axios";
 
 let images = 'http://192.168.1.67:5000/'
 
-function Mapa({ route, navigation }) {
+function Maps({ route, navigation }) {
 
     const parametro = route.params.parametro;
     const [ponto, setPonto] = useState([]);
@@ -23,7 +23,7 @@ function Mapa({ route, navigation }) {
         return axios.get('http://192.168.1.67:5000/ponto/getPontos')
             .then(function (response) {
                 setPonto(response.data),
-                setLoading(false)
+                    setLoading(false)
                 ponto.map(ponto => {
                     console.log(ponto);
                 })
@@ -40,11 +40,11 @@ function Mapa({ route, navigation }) {
             latitudeDelta: 0.1,
             longitudeDelta: 0.1,
         });
-  /*  const [markerPosition, setMarkerPosition] = useState(
-        {
-            latitude: 41.693447,
-            longitude: -8.846955,
-        });*/
+    /*  const [markerPosition, setMarkerPosition] = useState(
+          {
+              latitude: 41.693447,
+              longitude: -8.846955,
+          });*/
 
     const handleSuccess = position => {
         var lat = parseFloat(position.coords.latitude)
@@ -59,7 +59,7 @@ function Mapa({ route, navigation }) {
         setInitialPosition(initialRegion);
         setLatitude(lat);
         setLongitude(long);
-    //    setMarkerPosition(initialRegion);
+        //    setMarkerPosition(initialRegion);
     };
 
     const handleError = error => {
@@ -92,7 +92,7 @@ function Mapa({ route, navigation }) {
                 provider={PROVIDER_GOOGLE} // remove if not using Google Maps
                 style={styles.map}
                 region={initialPosition}
-             
+
             >
                 {ponto && ponto.map(marker =>
                     <Marker
@@ -104,7 +104,7 @@ function Mapa({ route, navigation }) {
                         <Callout>
                             <View style={styles.callout}>
                                 <Image style={styles.image}
-                                    source={{ uri: images+marker.Imagem }} />
+                                    source={{ uri: images + marker.Imagem }} />
                                 <View style={styles.callout2}>
                                     <Text>
                                         Assunto:{marker.Tema}
@@ -114,14 +114,46 @@ function Mapa({ route, navigation }) {
                         </Callout>
 
                     </Marker>
-                    
+
                 )
                 }
-               
+
             </MapView>
-      
-           
-        
+
+            <TouchableOpacity
+                onPress={() =>
+                    navigation.navigate('Login')
+                }
+                style={styles.btnListaEsquerda}>
+                <Image
+                    source={require('./../imagens/saida.png')}
+                    style={styles.FloatingButtonStyle}
+                />
+            </TouchableOpacity>
+
+            <TouchableOpacity
+                onPress={() => navigation.dispatch(StackActions.replace('ListagemP',{parametro}))}
+                style={styles.btnListaDireita}>
+                <Image
+                    source={require('./../imagens/registo.png')}
+                    style={styles.FloatingButtonStyle}
+                />
+            </TouchableOpacity>
+
+            <TouchableOpacity
+                onPress={() =>
+                    navigation.navigate('InserirP', {
+                        parametro,
+                        lat: Latitude,
+                        long: Longitude,
+                    })
+                }
+                style={styles.btnPlus}>
+                <Image
+                    source={require('./../imagens/mais.png')}
+                    style={styles.FloatingButtonStyle}
+                />
+            </TouchableOpacity>
         </View>
 
     );
@@ -167,19 +199,19 @@ const styles = StyleSheet.create({
         height: 50,
         alignItems: 'center',
         justifyContent: 'center',
-        right: 30,
+        right: 120,
         bottom: 20,
-      },
-      btnPlus: {
+    },
+    btnPlus: {
         position: 'absolute',
         width: 50,
         height: 50,
         alignItems: 'center',
         justifyContent: 'center',
-        right: 150,
+        right: 220,
         bottom: 20,
-      },
-      btnListaEsquerda: {
+    },
+    btnListaEsquerda: {
         position: 'absolute',
         width: 50,
         height: 50,
@@ -187,14 +219,15 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         left: 30,
         bottom: 20,
-      },
-    
-      FloatingButtonStyle: {
+    },
+
+    FloatingButtonStyle: {
+        //backgroundColor:'gray',
         resizeMode: 'contain',
         width: 40,
         height: 40,
         //backgroundColor:'black'
-      },
+    },
 
 });
-export default Mapa;
+export default Maps;
