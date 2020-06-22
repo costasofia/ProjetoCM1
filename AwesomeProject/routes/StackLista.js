@@ -84,6 +84,21 @@ function StackLista({ navigation }) {
 
         })}
       />
+           <Stack.Screen name="Eliminar" component={Eliminar}
+        options={({ navigation }) => ({
+          title: translations.EliminarN,
+          headerStyle: {
+            backgroundColor: '#ffbf00',
+          },
+          headerTintColor: '#fff',
+          headerTitleAlign: 'center',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+
+        })}
+      />
+
        </Stack.Navigator>
 
 );
