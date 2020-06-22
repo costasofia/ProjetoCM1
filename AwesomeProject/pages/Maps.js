@@ -1,8 +1,8 @@
-import React, { useEffect, useState, componentDidMount, useNativeDriver } from 'react';
+import React, { useEffect, useState, componentDidMount, useNativeDriver, useContext } from 'react';
 import { View, Map, Text, Button, StyleSheet, Image, Alert, TouchableOpacity, actionButtuon, } from 'react-native';
 import { StackAActions, StackActions } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-
+import { LocalizationContext } from './../services/localization/LocalizationContext';
 import MapView, { PROVIDER_GOOGLE, Marker, Callout, Circle } from 'react-native-maps';
 import Geolocation from '@react-native-community/geolocation';
 import axios from "axios";
@@ -10,7 +10,7 @@ import axios from "axios";
 let images = 'http://192.168.1.67:5000/'
 
 function Maps({ route, navigation }) {
-
+    const { translations } = useContext(LocalizationContext);
     const parametro = route.params.parametro;
     const [ponto, setPonto] = useState([]);
     const [Latitude, setLatitude] = useState('');
@@ -107,7 +107,10 @@ function Maps({ route, navigation }) {
                                     source={{ uri: images + marker.Imagem }} />
                                 <View style={styles.callout2}>
                                     <Text>
-                                        Assunto:{marker.Tema}
+                                    {translations.Assunto}: {marker.Tema}
+                                    </Text>
+                                    <Text>
+                                    {translations.Descricao}: {marker.Descricao}
                                     </Text>
                                 </View>
                             </View>
@@ -178,8 +181,8 @@ const styles = StyleSheet.create({
     },
     image: {
         flex: 1,
-        height: 100,
-        width: 100,
+        height: 80,
+        width: 80,
     },
     header: {
         flex: 0.095,

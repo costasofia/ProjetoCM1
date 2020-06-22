@@ -59,10 +59,10 @@ function DetalhesP({ route, navigation }) {
       </View>
 
       <TouchableOpacity onPress={updateData} style={styles.button1} >
-        <Text>{translations.AtualizarN}</Text>
+        <Text>{translations.AtualizarP}</Text>
       </TouchableOpacity>
       <TouchableOpacity onPress={deleteData} style={styles.button2} >
-        <Text>{translations.EliminarN}</Text>
+        <Text>{translations.EliminarP}</Text>
       </TouchableOpacity>
 
 
@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
   },
   button1: {
     alignItems: "center",
-    backgroundColor: "#ffbf00",
+    backgroundColor: "#fff",
     padding: 10,
     borderRadius: 4,
     margin: 10,
@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
   },
   button2: {
     alignItems: "center",
-    backgroundColor: "#ffbf00",
+    backgroundColor: "#fff",
     padding: 10,
     borderRadius: 4,
     margin: 10,

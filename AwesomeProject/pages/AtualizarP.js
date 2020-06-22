@@ -51,7 +51,7 @@ function AtualizarP({ route, navigation }) {
         onChangeText={text => setDescricao1(text)}
       >{Descricao1}</TextInput>
       <TouchableOpacity onPress={updatePonto} style={styles.button} >
-        <Text>{translations.AtualizarN}</Text>
+        <Text>{translations.AtualizarP}</Text>
       </TouchableOpacity>
     </View>
   );
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     marginTop: 20,
     margin: 10,
-    borderColor: '#ffbf00',
+    borderColor: '#000',
     backgroundColor: "#fff",
     height: 40,
     borderRadius: 2,
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
   },
   button: {
     alignItems: "center",
-    backgroundColor: "#ffbf00",
+    backgroundColor: "#fff",
     padding: 10,
     borderRadius: 4,
     margin: 10,
