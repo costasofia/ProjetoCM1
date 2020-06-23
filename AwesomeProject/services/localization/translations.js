@@ -32,6 +32,15 @@ const translations = {
         Falha:'Update failed',
         ListaN:'Notes List',
         DetalhesN:'Note Details',
+        BotaoPonto: 'Insert Marker',
+        Foto: 'Take a picture',
+        InserirP:'Insert Marker',
+        AtualizarP:'Update Marker',
+        EliminarP:'Delete Marker',
+        PC:'Order Canceled',
+        ListaP:'List of Markers',
+        DetalhesP:'Marker Details',
+        AtualizarP:'Update Marker',
     },
     pt: {
         BotaoNotas: 'NOTAS',
@@ -64,6 +73,15 @@ const translations = {
         Falha:'Atualização falhou',
         ListaN:'Lista de Notas',
         DetalhesN:'Detalhes da Nota',
+        BotaoPonto: 'Inserir Ponto',
+        Foto: 'Tirar Foto',
+        InserirP:'Inserir Ponto',
+        AtualizarP:'Atualizar Ponto',
+        EliminarP:'Apagar Ponto',
+        PC:'Pedido Cancelado',
+        ListaP:'Lista de Pontos',
+        DetalhesP:'Detalhes do Ponto',
+        AtualizarP:'Atualizar Ponto',
     }
 };
 
