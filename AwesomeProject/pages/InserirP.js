@@ -63,7 +63,7 @@ function InserirP({route, navigation}){
         return axios.post('http://192.168.1.67:5000/ponto/criarPonto',{
             Tema: Tema,
             Descricao: Descricao,
-            Imagem: Imagem,
+            Imagem: img,
             Latitude: lat,
             Longitude:long,
             IdUtilizador: parametro

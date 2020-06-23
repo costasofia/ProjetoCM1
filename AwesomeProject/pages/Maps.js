@@ -30,7 +30,7 @@ function Maps({ route, navigation }) {
             }.bind(this))
             .catch((error) => {
                 console.log(error);
-            }, []);
+            });
     }
 
     const [initialPosition, setInitialPosition] = useState(
