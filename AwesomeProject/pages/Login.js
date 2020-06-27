@@ -3,7 +3,8 @@ import axios from "axios";
 import jwt_decode from 'jwt-decode';
 import { StyleSheet, View, Text, Image, Button, TextInput, TouchableOpacity, Alert, Dimensions, } from 'react-native';
 
-import { StackAActions, StackActions } from '@react-navigation/native';
+
+import { StackActions } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { LocalizationContext } from './../services/localization/LocalizationContext';
 
@@ -11,13 +12,12 @@ import { LocalizationContext } from './../services/localization/LocalizationCont
 const Stack = createStackNavigator();
 const window = Dimensions.get('window');
 const screen = Dimensions.get('screen');
+const { width: WIDTH } = Dimensions.get('window');
 
 function Login({ navigation }) {
 
-    
     const [Email, setEmail] = useState('');
     const [Password, setPassword] = useState('');
-
 
     const { translations } = useContext(LocalizationContext);
 
@@ -71,7 +71,7 @@ function Login({ navigation }) {
                             translations.Login,
                             translations.Loginok,
                             [
-                                { text: translations.Continuar, onPress: () => { navigation.navigate('Maps', {parametro: decoded.IdUtilizador}) } },
+                                { text: translations.Continuar, onPress: () => { navigation.dispatch(StackActions.replace('StackMapa', { screen: 'Maps', params: { parametro: decoded.IdUtilizador } })) } },
                             ]
 
                         )
@@ -90,32 +90,84 @@ function Login({ navigation }) {
                 });
         }
     }
-   
+
     return (
-        <View style={dimensions.window.height > dimensions.window.width ? styles.fullP : styles.fullL}>
-            <View style={styles.part1}>
+        <View style={
+            dimensions.window.height > dimensions.window.width
+                ? styles.backgroundContainer
+                : styles.backgroundContainerLand
+        }>
+            <View
+                style={
+                    dimensions.window.height > dimensions.window.width
+                        ? styles.logoContainer
+                        : styles.logoContainerLand
+                }>
                 <Image style={{ width: 150, height: 150 }} source={require('../imagens/localizacao.png')} />
             </View>
-            <View style={styles.part2}>
-                <TextInput
-                    style={styles.textinput}
-                    placeholder={translations.Email}
-                    onChangeText={text => setEmail(text)}>
-                </TextInput>
-                <TextInput
-                    secureTextEntry={true}
-                    style={styles.textinput}
-                    placeholder={translations.Password}
-                    onChangeText={text => setPassword(text)}>
-                </TextInput>
-                <View>
-                    <TouchableOpacity onPress={login} style={styles.button2}>
-                        <Text style={styles.textStyle}>{translations.BotaoLogin}</Text>
-                    </TouchableOpacity>
+            <View>
+                <View style={styles.inputContainer}>
+                    <TextInput
+                        style={
+                            dimensions.window.height > dimensions.window.width
+                                ? styles.input
+                                : styles.inputLand
+                        }
+                        placeholder={translations.Email}
+                        onChangeText={text => setEmail(text)}>
+                    </TextInput>
                 </View>
-                <TouchableOpacity onPress={() => navigation.navigate('StackLista')} style={styles.button}>
-                    <Text style={styles.textStyle}>{translations.BotaoNotas}</Text>
-                </TouchableOpacity>
+                <View style={styles.inputContainer}>
+                    <TextInput
+                        style={
+                            dimensions.window.height > dimensions.window.width
+                                ? styles.input
+                                : styles.inputLand
+                        }
+                        secureTextEntry={true}
+                        placeholder={translations.Password}
+                        onChangeText={text => setPassword(text)}>
+                    </TextInput>
+                </View>
+                <View
+                    style={
+                        dimensions.window.height > dimensions.window.width
+                            ? styles.containerbtns
+                            : styles.containerbtnsLand
+                    }>
+                    <View
+                        style={
+                            dimensions.window.height > dimensions.window.width
+                                ? styles.containerLogin
+                                : styles.containerLoginLand
+                        }>
+                        <TouchableOpacity
+                            style={
+                                dimensions.window.height > dimensions.window.width
+                                    ? styles.btnLogin
+                                    : styles.btnLand
+                            }
+                            onPress={login} >
+                            <Text style={styles.textStyle}>{translations.BotaoLogin}</Text>
+                        </TouchableOpacity>
+                    </View>
+                        <View
+                        style={
+                            dimensions.window.height > dimensions.window.width
+                                ? styles.containerLogin
+                                : styles.containerLoginLand
+                        }>
+                        <TouchableOpacity
+                            style={
+                                dimensions.window.height > dimensions.window.width
+                                    ? styles.btnLogin
+                                    : styles.btnLand
+                            }
+                            onPress={() => navigation.navigate('StackLista')} >
+                            <Text style={styles.textStyle}>{translations.BotaoNotas}</Text>
+                        </TouchableOpacity>
+                    </View>
+                </View>
             </View>
         </View>
 
@@ -123,70 +175,113 @@ function Login({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-    fullP: {
-        flex: 1,
-        flexDirection: 'column',
-        backgroundColor: "#ededde",
-    },
-    fullL: {
-        flex: 1,
-        flexDirection: 'row',
-        backgroundColor: "#ededde",
-    },
-    part1: {
-        flex: 12,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    part2: {
-        flex: 12,
-        justifyContent: 'center',
-    },
-    part3: {
-        flex: 1,
-        justifyContent: 'center',
-        margin: 10,
-    },
-    buttonview: {
-        color: 'black',
-        flex: 1,
-        margin: 10,
-    },
-    buttonview1: {
-        color: 'black',
-        flex: 1,
-        margin: 10,
-    },
-    text: {
-        color: 'black',
-        fontSize: 25,
-    },
-    textinput: {
-        height: 40,
-        borderColor: 'gray',
-        borderWidth: 2,
-        margin: 10,
-    },
-    button: {
-        height: 40,
-        padding: 10,
-        backgroundColor: '#ffbf00',
-        borderRadius: 2,
-        margin: 10
-    },
-    button2: {
-        height: 40,
-        padding: 10,
-        backgroundColor: '#ffbf00',
-        borderRadius: 2,
-        margin: 9
-    },
+
+
     textStyle: {
         margin: 1,
         borderColor: 'black',
         flex: 1,
         color: 'black',
         textAlign: 'center',
+    },
+    logoContainer: {
+        alignItems: 'center',
+        marginTop: 35,
+        marginBottom: 50,
+    },
+    logoContainerLand: {
+        alignItems: 'center',
+        marginTop: 15,
+        marginBottom: 20,
+        marginLeft: 20,
+    },
+    inputContainer: {
+        alignItems: 'center',
+        marginTop: 2,
+    },
+    input: {
+        width: WIDTH - 40,
+        height: 45,
+        borderRadius: 2,
+        fontSize: 16,
+        //paddingLeft: 45,
+        paddingLeft: 10,
+        backgroundColor: 'rgba(0, 0, 0, 0.35)',
+        //color: 'rgba(255, 255, 255, 0.7)',
+        marginHorizontal: 2,
+    },
+    inputLand: {
+        width: 300,
+        height: 45,
+        borderColor: '#000',
+        borderRadius: 2,
+        fontSize: 16,
+        //paddingLeft: 45,
+        paddingLeft: 20,
+        backgroundColor: 'rgba(0, 0, 0, 0.35)',
+        color: 'rgba(255, 255, 255, 0.7)',
+        marginHorizontal: 30,
+    },
+    containerbtns: {
+        margin: 2,
+        alignItems: 'center',
+    },
+    containerbtnsLand: {
+        alignItems: 'center',
+        flexDirection: 'row',
+        marginHorizontal: 25,
+    },
+    containerLogin: {
+        marginTop: 20,
+        alignItems: 'center',
+    },
+    containerLoginLand: {
+        marginTop: 20,
+        marginLeft: 20,
+        alignItems: 'center',
+    },
+    btnLogin: {
+        padding: 10,
+        width: WIDTH - 40,
+        height: 40,
+        borderRadius: 2,
+        backgroundColor: 'rgba(72,61,139, 0.8)',
+        justifyContent: 'center',
+        marginTop: 20,
+    },
+    btnLand: {
+        width: 150,
+        padding: 8,
+        borderRadius: 2,
+        height: 40,
+        margin: 12,
+        backgroundColor: 'rgba(72,61,139, 0.8)',
+        justifyContent: 'center',
+    },
+
+    btnNotas: {
+        padding: 10,
+        width: WIDTH - 40,
+        height: 40,
+        borderRadius: 2,
+        backgroundColor: 'rgba(72,61,139, 0.8)',
+        justifyContent: 'center',
+        marginTop: 20,
+    },
+    backgroundContainer: {
+        flex: 1,
+        width: null,
+        height: null,
+        //flexDirection: 'row',
+        //justifyContent: 'center',
+        alignItems: 'center',
+    },
+    backgroundContainerLand: {
+        flex: 1,
+        width: null,
+        height: null,
+        flexDirection: 'row',
+        alignItems: 'center',
     },
 });
 

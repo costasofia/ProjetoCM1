@@ -124,8 +124,7 @@ function Maps({ route, navigation }) {
             </MapView>
 
             <TouchableOpacity
-                onPress={() =>
-                    navigation.navigate('Login')
+                     onPress={() => navigation.dispatch(StackActions.replace('Login'))
                 }
                 style={styles.btnListaEsquerda}>
                 <Image
