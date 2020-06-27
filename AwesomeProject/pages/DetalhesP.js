@@ -1,9 +1,12 @@
 import React, { useContext, useEffect, useState, useFocusEffect } from 'react';
-import { StyleSheet, Platform, View, Button, Image, Text, TextInput, TouchableOpacity, Alert, YellowBox, ListView } from 'react-native';
+import { StyleSheet, Dimensions, Platform, View, Button, Image, Text, TextInput, TouchableOpacity, Alert, YellowBox, ListView } from 'react-native';
 import axios from "axios";
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { LocalizationContext } from './../services/localization/LocalizationContext';
+
+
+
 function DetalhesP({ route, navigation }) {
   const parametro = route.params.parametro;
   const { IdPonto,IdUtilizador, Tema, Descricao, Latitude, Longitude } = route.params;
@@ -12,6 +15,8 @@ function DetalhesP({ route, navigation }) {
   const [isLoading, setLoading] = useState(true);
 
 
+
+  
   
   function updateData() {
     navigation.navigate('AtualizarP',{
@@ -78,11 +83,11 @@ const styles = StyleSheet.create({
   TextInputStyle:
   {
     borderWidth: 1,
-    marginTop: 20,
+    marginTop: 15,
     padding: 10,
     margin: 5,
     borderColor: 'black',
-    height: 40,
+    height: 35,
     borderRadius: 2,
     marginBottom: 2,
     textAlign: 'center',

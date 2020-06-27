@@ -142,11 +142,12 @@ function InserirP({route, navigation}){
         backgroundColor: '#fff',
       },
       containerBtns: {
-        flexDirection: 'row',
+       flexDirection: 'row',
         justifyContent: 'center',
       },
       containerBtnsLand: {
-        marginLeft: 60,
+        marginLeft: 30,
+        flexDirection: 'row',
       },
       button: {
         width: 150,
@@ -183,10 +184,10 @@ function InserirP({route, navigation}){
       },
       TextInputStyleDescLand: {
         height: 50,
-    
+        borderWidth: 1,
         margin: 10,
         borderColor: '#000',
-        borderRadius: 15,
+        borderRadius: 2,
         marginBottom: 0,
         textAlignVertical: 'top',
       },
