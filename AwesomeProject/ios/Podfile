@@ -79,6 +79,8 @@ target 'AwesomeProject' do
 
   pod 'RealmJS', :path => '../node_modules/realm'
 
+  pod 'RNSensors', :path => '../node_modules/react-native-sensors'
+
   target 'AwesomeProjectTests' do
     inherit! :complete
     # Pods for testing

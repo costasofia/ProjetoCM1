@@ -1,12 +1,18 @@
 import React, { useContext, useState, useEffect } from 'react';
 import axios from "axios";
 import jwt_decode from 'jwt-decode';
-import { StyleSheet, View, Text, Image, Button, TextInput, TouchableOpacity, Alert, Dimensions, } from 'react-native';
-
+import { StyleSheet, View, Text, Image, Button, TextInput, TouchableOpacity, Alert, Dimensions, } from 'react-native'
+  
 
 import { StackActions } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { LocalizationContext } from './../services/localization/LocalizationContext';
+
+import { gyroscope } from "react-native-sensors";
+
+const subscription = gyroscope.subscribe(({ x, y, z, timestamp }) =>
+  console.log({ x, y, z, timestamp })
+);
 
 
 const Stack = createStackNavigator();
@@ -252,11 +258,11 @@ const styles = StyleSheet.create({
         marginTop: 20,
     },
     btnLand: {
-        width: 150,
+        width: 160,
         padding: 8,
         borderRadius: 2,
         height: 40,
-        margin: 12,
+        margin: 16,
         backgroundColor: '#ffbf00',
         justifyContent: 'center',
     },

@@ -73,7 +73,7 @@ function InserirP({route, navigation}){
            // navigation.dispach(StackActions.replace('Mapa', {IdPonto: IdPonto, IdUtilizador:IdUtilizador, Tema:Tema, Descricao:Descricao}))
         }).catch(error=>{
             console.log(error);
-        },[]);
+        });
         
     }
     return (
@@ -146,7 +146,8 @@ function InserirP({route, navigation}){
         justifyContent: 'center',
       },
       containerBtnsLand: {
-        marginLeft: 30,
+           // justifyContent: 'center',
+        marginRight: 135,
         flexDirection: 'row',
       },
       button: {
@@ -155,10 +156,10 @@ function InserirP({route, navigation}){
         borderRadius: 2,
         margin: 12,
         marginTop: 0,
-        backgroundColor: '#000',
+        backgroundColor: '#ffbf00',
       },
       text: {
-        color: 'white',
+        color: '#000',
         fontSize: 15,
         textAlign: 'center',
       },

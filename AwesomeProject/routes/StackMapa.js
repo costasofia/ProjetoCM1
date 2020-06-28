@@ -21,7 +21,7 @@ function StackLogin({ navigation }) {
 
                 <Stack.Screen name="InserirP" component={InserirP}
                     options={({ navigation }) => ({
-                        title: translations.DetalhesN,
+                        title: translations.InserirP,
                         headerStyle: {
                             backgroundColor: '#ffbf00',
                         },
@@ -44,6 +44,7 @@ function StackLogin({ navigation }) {
                         headerTitleAlign: 'center',
                         headerTitleStyle: {
                             fontWeight: 'bold',
+                            
                         },
 
                     })}

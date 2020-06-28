@@ -19,19 +19,7 @@ function Maps({ route, navigation }) {
     const [loading, setLoading] = useState(true);
     let reload = false
 
-    function getPontos() {
-        return axios.get('http://192.168.1.67:5000/ponto/getPontos')
-            .then(function (response) {
-                setPonto(response.data),
-                    setLoading(false)
-                ponto.map(ponto => {
-                    console.log(ponto);
-                })
-            }.bind(this))
-            .catch((error) => {
-                console.log(error);
-            });
-    }
+
 
     const [initialPosition, setInitialPosition] = useState(
         {
@@ -66,19 +54,37 @@ function Maps({ route, navigation }) {
         setError(error.message);
     };
 
+    //CORRE UMA VEZ SEMPRE QUE ABRIR ESTE ECRA!
     useEffect(() => {
-        getPontos();
         Geolocation.getCurrentPosition(handleSuccess, handleError);
-        const watchId = Geolocation.watchPosition(handleSuccess, handleError);
-        return () => Geolocation.clearWatch(watchId);
     }, []);
 
+    //WATCH
+    useEffect(() => {
+        const watchId = Geolocation.watchPosition(handleSuccess, handleError);
+        return () => Geolocation.clearWatch(watchId);
+       
+    }, []);
+
+    useEffect(() => {
+        getPontos();
+    }, []);
+
+    function getPontos() {
+        return axios.get('http://192.168.1.67:5000/ponto/getPontos')
+            .then(function (response, data) {
+                setPonto(response.data),
+                     setLoading(false)
+                    ponto.map(ponto => {
+                        console.log(ponto);
+                    })
+            }.bind(this))
+            .catch((error) => {
+                console.log(error);
+            });
+    }
     return (
-        /*<View>
-            <Text>
-            {parametro}
-            </Text>
-        </View>*/
+        
         <View style={styles.container}>
 
 
@@ -94,23 +100,25 @@ function Maps({ route, navigation }) {
                 region={initialPosition}
 
             >
-                {ponto && ponto.map(marker =>
+                {ponto.map((marker) =>(
                     <Marker
-                        key={marker.IdUtilizador}
+                        key={marker.IdPonto}
                         coordinate={{
                             latitude: marker.Latitude,
                             longitude: marker.Longitude
                         }}>
                         <Callout>
                             <View style={styles.callout}>
+                                <Text>
                                 <Image style={styles.image}
-                                    source={{ uri: images + marker.Imagem }} />
+                                    source={{ uri: images+marker.Imagem, }} />
+                               </Text>
                                 <View style={styles.callout2}>
                                     <Text>
-                                    {translations.Assunto}: {marker.Tema}
+                                        {translations.Assunto}: {marker.Tema}
                                     </Text>
                                     <Text>
-                                    {translations.Descricao}: {marker.Descricao}
+                                        {translations.Descricao}: {marker.Descricao}
                                     </Text>
                                 </View>
                             </View>
@@ -118,13 +126,12 @@ function Maps({ route, navigation }) {
 
                     </Marker>
 
-                )
-                }
-
+                 ) )}
+                
             </MapView>
 
             <TouchableOpacity
-                     onPress={() => navigation.dispatch(StackActions.replace('Login'))
+                onPress={() => navigation.dispatch(StackActions.replace('Login'))
                 }
                 style={styles.btnListaEsquerda}>
                 <Image
@@ -134,7 +141,7 @@ function Maps({ route, navigation }) {
             </TouchableOpacity>
 
             <TouchableOpacity
-                onPress={() => navigation.navigate('ListagemP',{parametro})}
+                onPress={() => navigation.navigate('ListagemP', { parametro })}
                 style={styles.btnListaDireita}>
                 <Image
                     source={require('./../imagens/registo.png')}
@@ -179,8 +186,10 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
     },
     image: {
-        flex: 1,
-        height: 80,
+        resizeMode: 'cover',
+       // backgroundColor: 'red',
+       // flex: 1,
+        height: 100,
         width: 80,
     },
     header: {
@@ -224,6 +233,7 @@ const styles = StyleSheet.create({
     },
 
     FloatingButtonStyle: {
+        alignItems: 'center',
         //backgroundColor:'gray',
         resizeMode: 'contain',
         width: 40,

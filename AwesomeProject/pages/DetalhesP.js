@@ -82,11 +82,12 @@ const styles = StyleSheet.create({
 
   TextInputStyle:
   {
+    backgroundColor:'white',
     borderWidth: 1,
     marginTop: 15,
     padding: 10,
     margin: 5,
-    borderColor: 'black',
+    borderColor: '#ffbf00',
     height: 35,
     borderRadius: 2,
     marginBottom: 2,
@@ -94,7 +95,7 @@ const styles = StyleSheet.create({
   },
   button1: {
     alignItems: "center",
-    backgroundColor: "#fff",
+    backgroundColor: "#ffbf00",
     padding: 10,
     borderRadius: 4,
     margin: 10,
@@ -102,7 +103,7 @@ const styles = StyleSheet.create({
   },
   button2: {
     alignItems: "center",
-    backgroundColor: "#fff",
+    backgroundColor: "#ffbf00",
     padding: 10,
     borderRadius: 4,
     margin: 10,
